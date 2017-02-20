@@ -44,6 +44,7 @@ install:
     - cmd: rmdir C:\cygwin /s /q
     # Set the CONDA_NPY, although it has no impact on the actual build. We need this because of a test within conda-build.
     - cmd: set CONDA_NPY=19
+
     # Set the name of the channel label to upload to.
     - cmd: set "LABEL_NAME=main"
     # Only run the upload if the binstar token is present.
@@ -57,13 +58,23 @@ install:
     - cmd: set CONDA_PY=%CONDA_PY%
     - cmd: set PATH=%PATH%;%CONDA_INSTALL_LOCN%;%CONDA_INSTALL_LOCN%\scripts
     - cmd: set PYTHONUNBUFFERED=1
+    - cmd: conda list
 
     - cmd: conda config --add channels scitools
+    - cmd: conda list
+
     - cmd: conda config --set show_channel_urls yes
+    - cmd: conda list
+
 
     - cmd: conda install --yes --quiet -c conda-forge obvious-ci
+    - cmd: conda list
+
     - cmd: conda install --yes --quiet -c conda-forge conda-build-all conda-build==2.0.10
+    - cmd: conda list
+
     - cmd: conda install --yes --quiet conda==4.2.13 jinja2 anaconda-client
+
     - cmd: conda list
 
     - cmd: conda info
