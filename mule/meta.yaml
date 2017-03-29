@@ -1,13 +1,18 @@
+{% set name = "mule" %}
+{% set version = "1.4" %}
+{% set sha256 = "e67700c4ee9d1d63a19a8b68b3ec8acdbc9b59acdbfe0a885c7e07e85d641e52" %}
+
 package:
-    name: mule
-    version: 1.4
+    name: {{ name|lower }}
+    version: {{ version }}
 
 source:
-    fn: mule.tar.gz
-    url: https://github.com/SciTools/mule/releases/download/vn1.4/mule.tar.gz
+    fn: {{ name }}-{{ version }}.tar.gz
+    url: https://github.com/SciTools/{{ name }}/releases/download/vn{{ version }}/{{ name }}.tar.gz
+    sha256: {{ sha256 }}
 
 build:
-    number: 0
+    number: 1
     skip: True # [py3k or win]
     script: python setup.py install --single-version-externally-managed --record record.txt
 
